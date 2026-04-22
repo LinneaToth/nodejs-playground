@@ -1,3 +1,8 @@
+//Todo - error handling, try catch
+//Todo - define types
+//Todo - lowercase input & storage name & species -> capitalize on presentation
+//Todo - case delete all pets D:
+
 import { createInterface } from "node:readline/promises";
 import { stdin, stdout } from "node:process";
 import { writeFile, readFile, access } from "node:fs/promises";
@@ -52,8 +57,6 @@ while (appRunning) {
 
   const pets = await getPets();
 
-  //Todo - error handling
-  //Todo - definetypes
   switch (activeChoice) {
     case 1:
       if (pets.length > 0) {
