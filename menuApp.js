@@ -1,3 +1,7 @@
+//Todo - error handling, try catch
+//Todo - define types
+//Todo - lowercase input & storage name & species -> capitalize on presentation
+//Todo - case delete all pets D:
 import { createInterface } from "node:readline/promises";
 import { stdin, stdout } from "node:process";
 import { writeFile, readFile, access } from "node:fs/promises";
@@ -41,8 +45,6 @@ while (appRunning) {
         process.exit(1);
     }
     const pets = await getPets();
-    //Todo - error handling
-    //Todo - definetypes
     switch (activeChoice) {
         case 1:
             if (pets.length > 0) {
@@ -68,7 +70,7 @@ while (appRunning) {
                 .indexOf(petToRemove);
             if (rmPetIndex >= 0) {
                 pets.splice(rmPetIndex, 1);
-                await writeFile("pets.json", JSON.stringify(pets, null, 2), "utf-8");
+                await writeFile("pets.json", JSON.stringify(pets, null, "\t"), "utf-8"); //last arg in stringify() is indentation
                 console.log("That's it. " + petToRemove + " is gone..");
                 break;
             }
