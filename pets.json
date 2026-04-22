@@ -1,1 +1,18 @@
-[{"name":"Clara","species":"Giraff"}]
+[
+	{
+		"name": "Clara",
+		"species": "Giraff"
+	},
+	{
+		"name": "Greger",
+		"species": "Ekorre"
+	},
+	{
+		"name": "Ivar",
+		"species": "Igelkott"
+	},
+	{
+		"name": "Ivar",
+		"species": "Igelkott"
+	}
+]
