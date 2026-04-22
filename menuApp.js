@@ -21,6 +21,7 @@ const menuOptions = [
     "1: List all pets",
     "2: Add a pet",
     "3: Delete a pet",
+    "4: Delete all pets",
 ];
 const showMenu = (optArr) => {
     console.log("\n");
@@ -66,6 +67,16 @@ const removePet = async () => {
     console.log("Oops, I don't think we have a " + petToRemove);
     return;
 };
+const massExtinction = async () => {
+    if (pets.length > 0) {
+        pets.length = 0; //Way to clear array contents
+        await writeFile(FILE, "[]", "utf-8");
+        console.log("What's wrong with you? All pets are gone. I hope you are happy.");
+        return;
+    }
+    console.log("Nothing to delete.");
+    return;
+};
 const fileExists = async () => {
     try {
         await access(FILE);
@@ -93,6 +104,9 @@ while (appRunning) {
             break;
         case 3:
             await removePet();
+            break;
+        case 4:
+            await massExtinction();
             break;
         case 0:
             exitApp();
