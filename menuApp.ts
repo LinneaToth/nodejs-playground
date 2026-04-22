@@ -1,5 +1,3 @@
-//Todo - lowercase input & storage name & species -> capitalize on presentation
-
 import { createInterface } from "node:readline/promises";
 import { stdin, stdout } from "node:process";
 import { writeFile, readFile, access } from "node:fs/promises";
