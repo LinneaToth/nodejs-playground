@@ -1,0 +1,11 @@
+{
+  "compilerOptions": {
+    "types": ["node"],
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,
+    "target": "es2022",
+    "typeRoots": ["./node_modules/@types"],
+    "moduleResolution": "node16",
+    "module": "node16"
+  }
+}
