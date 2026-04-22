@@ -1,4 +1,3 @@
-//Todo - error handling edge cases
 //Todo - lowercase input & storage name & species -> capitalize on presentation
 
 import { createInterface } from "node:readline/promises";
@@ -49,7 +48,9 @@ const exitApp = () => {
 const listPets = () => {
   if (pets.length > 0) {
     console.log("Complete list of pets:");
-    pets.map((pet: Pet) => console.log(`- ${pet.name}, ${pet.species}`));
+    pets.map((pet: Pet) =>
+      console.log(`- ${capitalize(pet.name)}, ${capitalize(pet.species)}`),
+    );
     return;
   }
   console.log("No pets were found. Why don't you add some?");
@@ -58,8 +59,8 @@ const listPets = () => {
 const addPet = async () => {
   console.log("Let's add a pet!");
   const pet = { name: "", species: "" };
-  pet.name = await rl.question("What is your pets name? ");
-  pet.species = await rl.question("What species is it? ");
+  pet.name = (await rl.question("What is your pets name? ")).toLowerCase();
+  pet.species = (await rl.question("What species is it? ")).toLowerCase();
   pets.push(pet);
   try {
     await writeFile(FILE, JSON.stringify(pets), "utf-8");
@@ -72,14 +73,14 @@ const addPet = async () => {
 };
 
 const removePet = async () => {
-  const petToRemove = await rl.question(
-    "What is the name of the pet we should remove? ",
-  );
+  const petToRemove = (
+    await rl.question("What is the name of the pet we should remove? ")
+  ).toLowerCase();
   const rmPetIndex = pets.map((pet: Pet) => pet.name).indexOf(petToRemove);
   if (rmPetIndex >= 0) {
     pets.splice(rmPetIndex, 1);
     await writeFile(FILE, JSON.stringify(pets, null, "\t"), "utf-8"); //last arg in stringify() is indentation
-    console.log("That's it. " + petToRemove + " is gone..");
+    console.log("That's it. " + capitalize(petToRemove) + " is gone..");
     return;
   }
   console.log("Oops, I don't think we have a " + petToRemove);
@@ -105,6 +106,10 @@ const fileExists = async () => {
   } catch {
     await writeFile(FILE, "[]", "utf-8");
   }
+};
+
+const capitalize = (petName: string) => {
+  return String(petName).charAt(0).toUpperCase() + String(petName).slice(1);
 };
 
 await fileExists();
