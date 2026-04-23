@@ -1,4 +1,4 @@
-# Node.js Exercises — April 2025
+# Node.js Exercises
 
 A collection of CLI programs built with TypeScript while learning Node.js.
 
