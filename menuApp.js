@@ -9,6 +9,7 @@ const rl = createInterface({
 });
 const FILE = "pets.json";
 const getPets = async () => {
+    //To do - add try catch. See https://mardby.se/w/index.php?title=JSON-hantering_i_Node.js
     const content = await readFile(FILE, "utf-8");
     return JSON.parse(content);
 };
